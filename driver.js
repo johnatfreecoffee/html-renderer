@@ -1,53 +1,27 @@
-(function() {
-    'use strict';
-    
-    const glide = {
-        getDoneCallback: function() {
-            return window.glideGotIt;
-        },
-        
-        getParameterName: function(param) {
-            return param.name;
-        },
-        
-        getParameterValue: function(param) {
-            return param.value;
-        },
-        
-        run: function(params) {
-            if (typeof window.function !== 'function') {
-                throw new Error('window.function is not defined');
-            }
-            
-            try {
-                const result = window.function.apply(null, params);
-                return result;
-            } catch (error) {
-                console.error('Function execution error:', error);
-                return undefined;
-            }
-        }
-    };
-    
-    window.glide = glide;
-    
-    // Handle messages from Glide
-    window.addEventListener('message', function(event) {
-        if (event.data && event.data.type === 'glide-compute') {
-            try {
-                const result = glide.run(event.data.params);
-                event.source.postMessage({
-                    type: 'glide-result',
-                    result: result,
-                    id: event.data.id
-                }, event.origin);
-            } catch (error) {
-                event.source.postMessage({
-                    type: 'glide-error',
-                    error: error.message,
-                    id: event.data.id
-                }, event.origin);
-            }
-        }
-    });
-})();
+window.addEventListener("message", async function(event) {
+    const { origin, data: { key, params } } = event;
+  
+    let result;
+    let error;
+    try {
+      result = await window.function(...params);
+    } catch (e) {
+      result = undefined;
+      try {
+        error = e.toString();
+      } catch (e) {
+        error = "Exception can't be stringified.";
+      }
+    }
+  
+    const response = { key };
+    if (result !== undefined) {
+      // FIXME: Remove `type` once that's in staging
+      response.result = { value: result };
+    }
+    if (error !== undefined) {
+      response.error = error;
+    }
+  
+    event.source.postMessage(response, "*");
+});
