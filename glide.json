@@ -1,1 +1,16 @@
-
+{
+  "name": "HTML Renderer",
+  "description": "Renders HTML code as live webpages for Glide web view components",
+  "parameters": [
+    {
+      "name": "htmlCode",
+      "displayName": "HTML Code", 
+      "type": "string",
+      "description": "Complete HTML code including CSS styling"
+    }
+  ],
+  "result": {
+    "type": "string",
+    "displayName": "Rendered Page URL"
+  }
+}
