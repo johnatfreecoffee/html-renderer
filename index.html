@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HTML Renderer - Glide Experimental Code Column</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .instructions {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        code {
+            background: #e8e8e8;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎨 HTML Renderer</h1>
+        <p>Render HTML code as live webpages in Glide Apps</p>
+    </div>
+    
+    <div class="instructions">
+        <h3>How to Use in Glide:</h3>
+        <ol>
+            <li>Add an <strong>Experimental Code Column</strong></li>
+            <li>Paste this URL: <code id="currentUrl"></code></li>
+            <li>Map your HTML code column to the "HTML Code" parameter</li>
+            <li>Add a <strong>Web View Component</strong> to your screen</li>
+            <li>Set the Web View source to your experimental code column</li>
+            <li>Save and enjoy rendered HTML pages! 🚀</li>
+        </ol>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px; color: #666;">
+        <p>Ready to integrate with Glide Apps</p>
+    </div>
+
+    <script src="driver.js"></script>
+    <script src="function.js"></script>
+    <script>
+        // Display current URL for easy copying
+        document.getElementById('currentUrl').textContent = window.location.href;
+    </script>
+</body>
+</html>
