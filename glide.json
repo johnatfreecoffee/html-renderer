@@ -1,16 +1,18 @@
-{
-  "name": "HTML Renderer",
-  "description": "Renders HTML code as live webpages for Glide web view components",
-  "parameters": [
-    {
-      "name": "htmlCode",
-      "displayName": "HTML Code", 
-      "type": "string",
-      "description": "Complete HTML code including CSS styling"
-    }
-  ],
-  "result": {
-    "type": "string",
-    "displayName": "Rendered Page URL"
-  }
-}
+[
+	{
+		"kind": "column",
+		"name": "HTML Renderer",
+		"description": "Renders HTML code as live webpages for Glide web view components. Add a web-embed component to your layout, then select this column as the source.",
+		"author": "John at Free Coffee",
+		"params": [
+			{
+				"name": "htmlCode",
+				"displayName": "HTML Code",
+				"type": "string"
+			}
+		],
+		"result": {
+			"type": "string"
+		}
+	}
+]
